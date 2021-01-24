@@ -1,0 +1,22 @@
+{
+  "name": "dig4503",
+  "version": "1.0.0",
+  "description": "DIG4503 Class CourseWork",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MojoDaHacker/dig4503.git"
+  },
+  "author": "Matthew McKenzie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MojoDaHacker/dig4503/issues"
+  },
+  "homepage": "https://github.com/MojoDaHacker/dig4503#readme",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
+}
