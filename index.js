@@ -1,6 +1,9 @@
-const Matthew = require("./Matthew")
+const axios = require("axios")
 
-
-const me = new Matthew("Matthew", "lightblue");
-
-me.speak()
+axios('https://pokeapi.co/api/v2/pokemon/golduck')
+.then(function (response) {
+  console.log(response.data)
+})
+.catch(function (error) {
+  console.log("Error: " + error);
+});
