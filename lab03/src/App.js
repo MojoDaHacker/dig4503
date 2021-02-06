@@ -1,9 +1,17 @@
-import Homepage from './components/homepage'
+import React from 'react';
 
-function App() {
-  return (
-    <Homepage firstName="Matthew" />
-  );
-}
+import ReactDOM from 'react-dom';
 
-export default App;
+const customer = {
+
+  first_name: "Alex",
+
+  last_name: "DeVille"
+
+};
+
+//              your code inside these <div> tags
+
+const output = <div><h1>My name is {customer.first_name}</h1><h1>My last name is {customer.last_name}</h1></div>;
+
+ReactDOM.render(output, document.querySelector("#root"));
