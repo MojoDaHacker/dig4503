@@ -1,9 +1,9 @@
 import {Component} from 'react'
-import Market from './Market'
+import Posts from './Posts'
 
 class App extends Component {
   render() {
-    return <Market />   /*call to Market to add button and item status*/
+    return <Posts />   /*call to Posts to  show posts*/
   }
 }
 
