@@ -1,9 +1,10 @@
 import {Component} from 'react'
 import Posts from './Posts'
+import Market from './Market'
 
 class App extends Component {
   render() {
-    return <Posts />   /*call to Posts to  show posts*/
+    return <Market />   /*call to Posts to  show posts*/
   }
 }
 
