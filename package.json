@@ -1,0 +1,15 @@
+{
+  "name": "lab8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MojoDaHacker/dig4503.git",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  },
+  "type": "module"
+}
