@@ -7,7 +7,16 @@ const port = 3010;
 const fileContents = fs.readFileSync('database.json')
 const db = JSON.parse(fileContents)
 
+app.use('/', Express.static('public'))
 
+app.post('/employees/:name/:age', (req, res) => {
+  var recordCreated = {error: 'record not created'}
+  req.params.age = parseInt(req.params.age)
+  db.push(req.params)
+  recordCreated = req.params
+  fs.writeFileSync('database.json', JSON.stringify(db, null, '\t'))
+  res.json(recordCreated) 
+})
 app.get('/employees/:name', (req, res) => {
   var foundMatch = {error: 'not found'}
   db.forEach(({name, age}) => {

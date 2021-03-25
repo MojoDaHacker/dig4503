@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <form onsubmit="getRecordFromName(event)">
+      <input name="name" placeholder="Enter name..." type="text" />
+      <button>Submit</button>
+    </form>
+    <form onsubmit="getRecordFromAge(event)">
+      <input name="age" placeholder="Enter age..." type="number" />
+      <button>Submit</button>
+    </form>
+    <form onsubmit="createRecord(event)">
+      <input id="createAge" name="age" type="number" placeholder="Enter age..." />
+      <input id="createName" name="name" type="text" placeholder="Enter name..." />
+      <button>Submit</button>
+    </form>
+
+    <h1>Reporting</h1>
+    <div id="reporting">
+
+    </div>
+    <script>
+      let reporting = document.querySelector('#reporting')
+
+      function getRecordFromName(event) {
+        event.preventDefault()
+        let value = event.target[0].value
+
+        fetch(`/employees/${value}`)
+        .then(res => res.json())
+        .then(data => updateReportingDiv(data.age))
+      }
+      function getRecordFromAge(event) {
+        event.preventDefault()
+        console.log(event)
+        let value = event.target[0].value
+
+        fetch(`/age/${value}`)
+        .then(res => res.json())
+        .then(data => updateReportingDiv(data.name))
+      }
+      function createRecord(event) {
+        event.preventDefault()
+        let age = document.querySelector('#createAge').value
+        let name = document.querySelector('#createName').value
+
+        console.log(age)
+        console.log(name)
+        
+        fetch(`/employees/${name}/${age}`, {method: 'post'})
+        .then(res => res.json())
+        .then(data => updateReportingDiv(JSON.stringify(data)))
+      }
+      function updateReportingDiv(data) {
+        reporting.innerHTML = data
+      }
+    </script>
+  </body>
+</html>
