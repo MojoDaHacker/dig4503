@@ -5,9 +5,13 @@
   "repository": "https://github.com/MojoDaHacker/dig4503.git",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon index.js"
+    "build": "cd client && yarn build",
+    "server": "nodemon index.js",
+    "start": "concurrently 'yarn:build' 'yarn:server'"
   },
   "dependencies": {
+    "concurrently": "^6.0.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "nodemon": "^2.0.7"
   },
