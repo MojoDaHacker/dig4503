@@ -1,30 +1,29 @@
-import Express from 'express'
-import fs from 'fs'
+import MongoClient from 'mongodb';
 
-const app = Express();
-const port = 3010;
+const URL = 'mongodb+srv://mmckenzie:pUfx7uJ13xFvvPul@cluster0.oewwc.mongodb.net/';
 
-const fileContents = fs.readFileSync('database.json')
-const db = JSON.parse(fileContents)
-
-
-app.get('/employees/:name', (req, res) => {
-  var foundMatch = {error: 'not found'}
-  db.forEach(({name, age}) => {
-    if (name === req.params.name) {
-      foundMatch = {name: name, age: age}
+MongoClient.connect(URL, {useUnifiedTopology: true})
+.then(async connection => {
+  const database = connection.db('sample_airbnb')
+  const collection = database.collection('listingsAndReviews')
+  const cursor = collection.find({
+    price: {
+      $lte: 200
+    },
+    review_scores: {
+      $gte : 99 
+    },
+    beds: {
+      $gte : 5
     }
-  }); 
-  res.json(foundMatch) 
-})
-app.get('/age/:number', (req, res) => {
-  var foundMatch = {error: 'not found'}
-  db.forEach(({name, age}) => {
-    if (age == req.params.number) {
-      foundMatch = {name: name, age: age}
-    }
-  });  
-  res.json(foundMatch) 
-})
+  })
 
-app.listen(port, () => console.log("App listening..."))
+  if ((await cursor.count()) === 0) {
+    console.log("No documents found!");
+    connection.close()
+  } else {
+    cursor.forEach(document => console.log(document.name), () => connection.close())
+  }
+
+})
+.catch(err => console.log(err))
