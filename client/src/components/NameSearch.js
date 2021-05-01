@@ -14,7 +14,7 @@ export default function NameSearch(props) {
 
     fetch(`/employees/${value}`)
     .then(res => res.json())
-    .then(data => {
+    .then(data => { //if data is available add it to the data store if not, show error
       if(data.name){
         reporting.innerHTML = data.name
         if(!records.includes(data)) setRecords([...records, data])

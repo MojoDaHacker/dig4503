@@ -21,12 +21,12 @@ export default function App() {
       <Container className="App mt-3">
         <Row>
           <Col xs={8}>
-            <AgeSearch />
-            <NameSearch />
-            <ReportingArea />
+            <AgeSearch /> {/*component to search by age*/}
+            <NameSearch /> {/*component to search by name*/}
+            <ReportingArea /> {/*component to report record*/}
           </Col>
           <Col xs={4}>
-            <RecentSearches />
+            <RecentSearches />   {/*component to list searches*/}
           </Col>
         </Row>
       </Container>

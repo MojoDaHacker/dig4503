@@ -3,8 +3,8 @@ import { Card, ListGroup, Badge } from 'react-bootstrap'
 import { RecordsContext } from '../App.js';
 
 const RecentRecords = props => {
-  const [records] = useContext(RecordsContext)
-  const memberStatus = ['New Member', 'Existing Member']
+  const [records] = useContext(RecordsContext) //data store of records
+  const memberStatus = ['New Member', 'Existing Member'] //badges indicating status of record
   return (
     <Card style={{minHeight: '75vh'}} className="overflow-auto">
       <Card.Header>Recent Searches</Card.Header>
