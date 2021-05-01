@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { RecordsContext } from '../App.js';
 
-export default class NameSearch extends React.Component {
-
-  getRecordFromName(event) {
+export default function NameSearch(props) {
+  const [records, setRecords] = useContext(RecordsContext)
+  
+  function getRecordFromName(event) {
     event.preventDefault()
 
     let reporting = document.querySelector('#reportingArea')
@@ -11,20 +14,25 @@ export default class NameSearch extends React.Component {
 
     fetch(`/employees/${value}`)
     .then(res => res.json())
-    .then(data => data.age ? reporting.innerHTML = data.age : reporting.innerHTML = data.error)
+    .then(data => {
+      if(data.name){
+        reporting.innerHTML = data.name
+        if(!records.includes(data)) setRecords([...records, data])
+      } else {
+        reporting.innerHTML = data.error
+      }
+    })
     .catch(err => console.log(err))
 
     nameForm.value = ""
   }
 
-  render() {
-    return (
-      <div>
-        <form id="nameForm" onSubmit={this.getRecordFromName}>
-          <input name="name" placeholder="Enter name..." type="text" />
-          <button>Submit</button>
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Form id="nameForm" onSubmit={getRecordFromName}>
+        <Form.Control name="name" placeholder="Enter name..." type="text" />
+        <Button type='submit'>Submit</Button>
+      </Form>
+    </div>
+  )
 }
